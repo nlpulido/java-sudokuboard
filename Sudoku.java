@@ -1,19 +1,27 @@
+/*
+* This program will randomly generate a 9x9 Sudoku Board through recursion
+*
+*/
+
 import java.util.Random;
+
 
 public class Sudoku {
 
+	/* initialize the two dimensional array and size */
 	int board[][] = new int[9][9];
 	int size = 0;
 
 	public static void main(String args[]){
 		Sudoku sudoku = new Sudoku();
 
-
+		/* if the board is filled, print the board */
 		if (sudoku.fillBoard()){
 			sudoku.printBoard();
 		}
 	}
 
+	/* fill the two dimensional array with randomly generated numbers */
 	public boolean fillBoard(){
 		return this.fillBoard(0, 0);
 	}
@@ -31,6 +39,7 @@ public class Sudoku {
 			return true;
 		}			
 
+		/* determines if a candidate is valid and not already existing in the matrix */
 		while(attempts < 9){
 			if (isValid(row, col, cand) == true){
 				board[row][col] = cand;
@@ -48,6 +57,7 @@ public class Sudoku {
 		return false;
 	}
 
+	/* this function checks the columns and rows to make sure the generated number does not exist */
 	public boolean isValid(int row, int col, int cand){
 		// checks if candidate exists in the column
 		for (int i = 0; i < 9; i++){
@@ -76,6 +86,7 @@ public class Sudoku {
 		return true;
 	}
 
+	/* this function prints out the board */
 	public void printBoard(){
 		System.out.println(" -----------------------");
 		for (int i = 0; i < 3; i++){
